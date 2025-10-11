@@ -22,17 +22,7 @@ function Contact() {
               <p><strong>Orari:</strong><br />Lun-Ven: 9:00 - 18:00</p>
             </div>
 
-            <div className="info-section">
-              <h3>Social</h3>
-              <div className="social-links">
-                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                </a>
-                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                  Instagram
-                </a>
-              </div>
-            </div>
+            
           </div>
 
           <div className="contact-form-container">

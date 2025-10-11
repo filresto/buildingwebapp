@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
+import ProjectDetail from './pages/ProjectDetail'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import './App.css'
@@ -66,6 +67,26 @@ function AnimatedRoutes() {
               }}
             >
               <Projects />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/progetti/:id"
+          element={
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={pageVariants}
+              transition={pageTransition}
+              style={{
+                position: 'absolute',
+                width: '100%',
+                minHeight: '100vh',
+                backgroundColor: '#ffffff'
+              }}
+            >
+              <ProjectDetail />
             </motion.div>
           }
         />

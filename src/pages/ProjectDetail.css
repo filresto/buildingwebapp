@@ -1,0 +1,153 @@
+.project-detail {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 100px 40px 40px 200px;
+}
+
+.back-button {
+  background: none;
+  border: 1px solid #333;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.back-button:hover {
+  background-color: #333;
+  color: #ffffff;
+}
+
+.project-not-found {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.project-not-found h2 {
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.project-detail-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.project-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 100px;
+}
+
+.project-images img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-images img:hover {
+  transform: scale(1.02);
+}
+
+.project-content {
+  padding: 20px 0;
+}
+
+.project-content h1 {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.project-content h2 {
+  font-size: 24px;
+  font-weight: 300;
+  color: #666;
+  margin: 0 0 40px 0;
+}
+
+.project-description {
+  margin-bottom: 50px;
+}
+
+.project-description p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.project-specs {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 30px;
+}
+
+.project-specs h3 {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0 0 20px 0;
+  color: #333;
+}
+
+.project-specs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-specs li {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.project-specs li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .project-detail {
+    padding: 80px 30px 30px 30px;
+  }
+
+  .project-detail-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .project-images {
+    position: relative;
+    top: 0;
+  }
+
+  .project-content h1 {
+    font-size: 36px;
+  }
+
+  .project-content h2 {
+    font-size: 20px;
+  }
+}

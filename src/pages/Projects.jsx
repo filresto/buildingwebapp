@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import './Projects.css'
 
 function Projects() {
+  const navigate = useNavigate()
   const projects = [
     {
       id: 1,
@@ -28,7 +30,11 @@ function Projects() {
         <h2 className="projects-title">Progetti</h2>
         <div className="projects-grid">
           {projects.map(project => (
-            <div key={project.id} className="project-card">
+            <div
+              key={project.id}
+              className="project-card"
+              onClick={() => navigate(`/progetti/${project.id}`)}
+            >
               <img src={project.image} alt={project.title} />
               <div className="project-info">
                 <h3>{project.title}</h3>
