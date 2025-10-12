@@ -86,18 +86,16 @@ function ProjectDetail() {
 
   return (
     <div className="project-detail">
-      <button className="back-button" onClick={() => navigate('/progetti')}>
-        ← Torna ai progetti
-      </button>
-
-      <div className="project-detail-container">
-        <div className="project-images">
-          {project.images.map((image, index) => (
-            <img key={index} src={image} alt={`${project.title} - ${index + 1}`} />
-          ))}
+      {/* Sezione principale: prima foto + info */}
+      <div className="project-hero">
+        <div className="project-hero-image">
+          <button className="back-button" onClick={() => navigate('/progetti')}>
+            ← Torna ai progetti
+          </button>
+          <img src={project.images[0]} alt={project.title} />
         </div>
 
-        <div className="project-content">
+        <div className="project-hero-content">
           <h1>{project.title}</h1>
           <h2>{project.subtitle}</h2>
 
@@ -117,6 +115,17 @@ function ProjectDetail() {
           </div>
         </div>
       </div>
+
+      {/* Gallery a tutta larghezza - altre foto */}
+      {project.images.length > 1 && (
+        <div className="project-gallery">
+          {project.images.slice(1).map((image, index) => (
+            <div key={index} className="gallery-image">
+              <img src={image} alt={`${project.title} - ${index + 2}`} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

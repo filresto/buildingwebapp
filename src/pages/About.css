@@ -1,7 +1,7 @@
 .about {
   min-height: 100vh;
   background-color: #ffffff;
-  padding: 100px 40px 40px 200px;
+  padding: 120px 60px 60px 240px;
 }
 
 .about-container {
@@ -68,5 +68,58 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Laptop/Tablet */
+@media (max-width: 1600px) and (min-width: 1025px) {
+  .about {
+    padding: 100px 40px 40px 200px;
+  }
+
+  .about-title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .about {
+    padding: 90px 30px 40px 180px;
+  }
+
+  .about-title {
+    font-size: 36px;
+  }
+
+  .about-section h3 {
+    font-size: 24px;
+  }
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .about {
+    padding: 70px 20px 40px 20px;
+  }
+
+  .about-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .about-content {
+    gap: 30px;
+  }
+
+  .about-section h3 {
+    font-size: 24px;
+  }
+
+  .about-section p {
+    font-size: 16px;
+  }
+
+  .services-list {
+    grid-template-columns: 1fr;
+  }
 }
 

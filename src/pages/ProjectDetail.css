@@ -1,7 +1,7 @@
 .project-detail {
   min-height: 100vh;
   background-color: #ffffff;
-  padding: 100px 40px 40px 200px;
+  padding: 120px 60px 60px 240px;
 }
 
 .back-button {
@@ -13,8 +13,9 @@
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: #333;
+  display: block;
 }
 
 .back-button:hover {
@@ -34,48 +35,42 @@
   color: #333;
 }
 
-.project-detail-container {
+/* Sezione Hero: prima foto + info */
+.project-hero {
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 0 auto 80px auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: start;
+  position: relative;
 }
 
-.project-images {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: sticky;
-  top: 100px;
-}
-
-.project-images img {
+.project-hero-image img {
   width: 100%;
   height: auto;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.project-images img:hover {
+.project-hero-image img:hover {
   transform: scale(1.02);
 }
 
-.project-content {
+.project-hero-content {
   padding: 20px 0;
 }
 
-.project-content h1 {
-  font-size: 48px;
+.project-hero-content h1 {
+  font-size: 56px;
   font-weight: 300;
   letter-spacing: 2px;
   margin: 0 0 10px 0;
   color: #333;
 }
 
-.project-content h2 {
-  font-size: 24px;
+.project-hero-content h2 {
+  font-size: 28px;
   font-weight: 300;
   color: #666;
   margin: 0 0 40px 0;
@@ -86,7 +81,7 @@
 }
 
 .project-description p {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.8;
   color: #444;
   margin-bottom: 20px;
@@ -99,7 +94,7 @@
 }
 
 .project-specs h3 {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   letter-spacing: 1px;
   margin: 0 0 20px 0;
@@ -113,7 +108,7 @@
 }
 
 .project-specs li {
-  font-size: 16px;
+  font-size: 18px;
   color: #666;
   margin-bottom: 10px;
   padding-left: 20px;
@@ -127,27 +122,78 @@
   color: #333;
 }
 
-/* Responsive */
-@media (max-width: 968px) {
+/* Gallery a tutta larghezza */
+.project-gallery {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.gallery-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive Laptop/Tablet */
+@media (max-width: 1600px) and (min-width: 1025px) {
   .project-detail {
-    padding: 80px 30px 30px 30px;
+    padding: 100px 40px 40px 200px;
   }
 
-  .project-detail-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .project-hero-content h1 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .project-detail {
+    padding: 90px 30px 40px 180px;
   }
 
-  .project-images {
-    position: relative;
-    top: 0;
-  }
-
-  .project-content h1 {
+  .project-hero-content h1 {
     font-size: 36px;
   }
 
-  .project-content h2 {
+  .project-hero-content h2 {
     font-size: 20px;
+  }
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .project-detail {
+    padding: 70px 20px 40px 20px;
+  }
+
+  .project-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .project-hero-content h1 {
+    font-size: 36px;
+  }
+
+  .project-hero-content h2 {
+    font-size: 20px;
+  }
+
+  .project-gallery {
+    gap: 30px;
   }
 }
