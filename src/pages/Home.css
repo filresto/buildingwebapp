@@ -8,12 +8,20 @@
 .home-background {
   width: 100%;
   height: 100%;
-  background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000');
+  background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2400');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(0.85);
+  filter: brightness(0.75);
 }
+
+/* Altri sfondi di ingegneria civile che puoi provare:
+   - Ponte moderno: https://images.unsplash.com/photo-1590320432945-f49f4dd4cd1e?q=80&w=2400
+   - Grattacieli: https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2400
+   - Cantiere: https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2400
+   - Struttura in acciaio: https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2400
+   - Edilizia moderna: https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2400
+*/
 
 /* Alternative engineering-related images you can use:
    - Modern building: https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000

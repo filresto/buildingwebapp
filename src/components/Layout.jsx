@@ -22,7 +22,7 @@ function Layout({ children }) {
       {/* Header desktop - logo */}
       <header className="header">
         <Link to="/" className="logo-link" onClick={closeMobileMenu}>
-          <h1 className="logo">STUDIO INGEGNERIA</h1>
+          <img src="/logo/8.png" alt="Boschi Studio" className="logo-image" />
         </Link>
       </header>
 
@@ -46,7 +46,7 @@ function Layout({ children }) {
         {/* Logo nel menu mobile */}
         <div className="mobile-menu-header">
           <Link to="/" className="mobile-logo-link" onClick={closeMobileMenu}>
-            <h2 className="mobile-logo">STUDIO INGEGNERIA</h2>
+            <img src="/logo/8.png" alt="Boschi Studio" className="mobile-logo-image" />
           </Link>
         </div>
 
