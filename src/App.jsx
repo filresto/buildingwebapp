@@ -6,6 +6,9 @@ import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Login from './pages/admin/Login'
+import Dashboard from './pages/admin/Dashboard'
+import ProjectForm from './pages/admin/ProjectForm'
 import './App.css'
 
 function AnimatedRoutes() {
@@ -130,20 +133,41 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
+
+        {/* Route Admin - senza Layout e animazioni */}
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/projects/new" element={<ProjectForm />} />
+        <Route path="/admin/projects/:id/edit" element={<ProjectForm />} />
       </Routes>
     </AnimatePresence>
   )
 }
 
 function App() {
+  const location = useLocation()
+  const isAdminRoute = location.pathname.startsWith('/admin')
+
+  return (
+    <>
+      {isAdminRoute ? (
+        <AnimatedRoutes />
+      ) : (
+        <Layout>
+          <AnimatedRoutes />
+        </Layout>
+      )}
+    </>
+  )
+}
+
+function AppWrapper() {
   return (
     <Router>
-      <Layout>
-        <AnimatedRoutes />
-      </Layout>
+      <App />
     </Router>
   )
 }
 
-export default App
+export default AppWrapper
 

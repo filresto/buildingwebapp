@@ -1,79 +1,43 @@
 import { useParams, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { getProject } from '../lib/supabase'
 import './ProjectDetail.css'
 
 function ProjectDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const [project, setProject] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  const projectsData = {
-    1: {
-      title: 'Progetto Residenziale',
-      subtitle: 'Complesso residenziale moderno',
-      description: `Un complesso residenziale all'avanguardia che combina design contemporaneo e sostenibilità ambientale.
+  useEffect(() => {
+    loadProject()
+  }, [id])
 
-      Il progetto si sviluppa su 5 piani fuori terra, con particolare attenzione all'efficienza energetica e al comfort abitativo. Ogni unità è stata progettata per massimizzare l'illuminazione naturale e garantire la privacy dei residenti.
-
-      Le strutture sono state realizzate con materiali di alta qualità, rispettando le più moderne normative antisismiche. Gli spazi comuni includono aree verdi, parcheggi sotterranei e zone dedicate al fitness e al relax.`,
-      images: [
-        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000',
-        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000',
-        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000',
-        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000'
-      ],
-      specs: [
-        'Superficie: 3.500 mq',
-        'Anno: 2023',
-        'Ubicazione: Milano',
-        'Classe energetica: A+'
-      ]
-    },
-    2: {
-      title: 'Edificio Commerciale',
-      subtitle: 'Centro commerciale e uffici',
-      description: `Edificio polifunzionale che ospita spazi commerciali al piano terra e uffici ai piani superiori.
-
-      La struttura è stata progettata per offrire massima flessibilità d'uso, con ampie vetrate che garantiscono luminosità e visibilità. Il sistema di climatizzazione è stato ottimizzato per ridurre i consumi energetici.
-
-      Gli spazi commerciali sono dotati di tutti i comfort moderni, mentre le aree uffici offrono ambienti di lavoro innovativi e funzionali. Il parcheggio multipiano può ospitare oltre 200 veicoli.`,
-      images: [
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000',
-        'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000',
-        'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1000',
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000'
-      ],
-      specs: [
-        'Superficie: 8.000 mq',
-        'Anno: 2022',
-        'Ubicazione: Roma',
-        'Piani: 7'
-      ]
-    },
-    3: {
-      title: 'Ristrutturazione Edificio Storico',
-      subtitle: 'Restauro conservativo',
-      description: `Intervento di restauro conservativo su edificio storico del centro città, con particolare attenzione alla preservazione degli elementi architettonici originali.
-
-      Il progetto ha richiesto un'attenta analisi strutturale per garantire la sicurezza statica dell'edificio, mantenendo inalterato il suo valore storico e artistico. Sono state utilizzate tecniche innovative di consolidamento.
-
-      Gli interni sono stati completamente rinnovati con impianti moderni, rispettando le linee guida della Soprintendenza. Il risultato è un perfetto equilibrio tra antico e moderno, funzionalità e bellezza architettonica.`,
-      images: [
-        'https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=1000',
-        'https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1000',
-        'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1000',
-        'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=1000'
-      ],
-      specs: [
-        'Superficie: 1.200 mq',
-        'Anno: 2024',
-        'Ubicazione: Firenze',
-        'Epoca: XIX secolo'
-      ]
+  const loadProject = async () => {
+    try {
+      setLoading(true)
+      const data = await getProject(id)
+      setProject(data)
+    } catch (err) {
+      console.error('Errore caricamento progetto:', err)
+      setError('Progetto non trovato')
+    } finally {
+      setLoading(false)
     }
   }
 
-  const project = projectsData[id]
+  if (loading) {
+    return (
+      <div className="project-detail">
+        <div style={{ textAlign: 'center', padding: '50px' }}>
+          Caricamento progetto...
+        </div>
+      </div>
+    )
+  }
 
-  if (!project) {
+  if (error || !project) {
     return (
       <div className="project-detail">
         <div className="project-not-found">
@@ -84,6 +48,15 @@ function ProjectDetail() {
     )
   }
 
+  // Prepara le immagini: main_image + gallery_images
+  const allImages = []
+  if (project.main_image) {
+    allImages.push(project.main_image)
+  }
+  if (project.gallery_images && Array.isArray(project.gallery_images)) {
+    allImages.push(...project.gallery_images)
+  }
+
   return (
     <div className="project-detail">
       {/* Sezione principale: prima foto + info */}
@@ -92,7 +65,20 @@ function ProjectDetail() {
           <button className="back-button" onClick={() => navigate('/progetti')}>
             ← Torna ai progetti
           </button>
-          <img src={project.images[0]} alt={project.title} />
+          {allImages.length > 0 ? (
+            <img src={allImages[0]} alt={project.title} />
+          ) : (
+            <div style={{ 
+              width: '100%', 
+              height: '400px', 
+              backgroundColor: '#f0f0f0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              Nessuna immagine disponibile
+            </div>
+          )}
         </div>
 
         <div className="project-hero-content">
@@ -105,21 +91,23 @@ function ProjectDetail() {
             ))}
           </div>
 
-          <div className="project-specs">
-            <h3>Specifiche tecniche</h3>
-            <ul>
-              {project.specs.map((spec, index) => (
-                <li key={index}>{spec}</li>
-              ))}
-            </ul>
-          </div>
+          {project.specs && project.specs.length > 0 && (
+            <div className="project-specs">
+              <h3>Specifiche tecniche</h3>
+              <ul>
+                {project.specs.map((spec, index) => (
+                  <li key={index}>{spec}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Gallery a tutta larghezza - altre foto */}
-      {project.images.length > 1 && (
+      {allImages.length > 1 && (
         <div className="project-gallery">
-          {project.images.slice(1).map((image, index) => (
+          {allImages.slice(1).map((image, index) => (
             <div key={index} className="gallery-image">
               <img src={image} alt={`${project.title} - ${index + 2}`} />
             </div>
