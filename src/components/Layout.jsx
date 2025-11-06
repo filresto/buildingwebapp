@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
+import { useIsAdmin } from '../hooks/useIsAdmin'
 import './Layout.css'
 
 function Layout({ children }) {
   const location = useLocation()
   const isHome = location.pathname === '/'
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { isAdmin } = useIsAdmin()
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -68,6 +70,15 @@ function Layout({ children }) {
               Instagram
             </a>
           </li>
+          
+          {/* Admin Dashboard - visibile solo se loggato come admin */}
+          {isAdmin && (
+            <li className="admin-nav-item">
+              <Link to="/admin/dashboard" onClick={closeMobileMenu} className="admin-link">
+                🔐 Admin Dashboard
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
 
